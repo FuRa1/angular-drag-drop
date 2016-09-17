@@ -1,0 +1,37 @@
+{
+  "name": "pika-drop",
+  "version": "1.0.0",
+  "description": "drop",
+  "main": "index.html",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node server/server.js"
+  },
+  "author": "Boris",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-drag-and-drop-lists": "^1.4.0",
+    "angular-ui-router": "^1.0.0-beta.2",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.0",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.4.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "postcss": "^5.2.0"
+  }
+}

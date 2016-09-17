@@ -1,0 +1,19 @@
+<div ng-app="previewController">
+    <div class="container">
+        <div class="blocks preview">
+            <div class="blocks__content" ng-repeat="box in boxes">
+                <ul>
+                    <li ng-repeat="item in boxes[$index]">
+                        <div class="title">{{item.title}}</div>
+                        <div class="blocks__content-wrp clearfix">
+                            <div class="logo">
+                                <img src="app/img/{{item.title}}.png">
+                            </div>
+                            <span class="text">{{item.text}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

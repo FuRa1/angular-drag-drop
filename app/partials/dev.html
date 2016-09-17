@@ -1,0 +1,39 @@
+<div ng-app="dropController">
+    <div class="container">
+        <div class="articles show">
+            <ul dnd-list="elements">
+                <li ng-repeat="item in elements"
+                    dnd-draggable="item"
+                    dnd-dragend = 'previewChecker()'
+                    dnd-moved="elements.splice($index, 1)">
+                    <div class="title">{{item.title}}</div>
+                    <div class="logo">
+                        <img src="app/img/{{item.title}}.png">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="controls">
+            <md-button href="#preview" class="md-raised" ng-click=saveItemsState() ng-disabled=readyToPreview >Preview</md-button>
+        </div>
+        <div class="blocks">
+            <div class="blocks__content" ng-repeat="box in boxes">
+                <ul dnd-list="boxes[$index]" dnd-disable-if="boxes[$index].length >= 1">
+                    <!-- -->
+                    <li ng-repeat="item in boxes[$index]"
+                        dnd-moved="boxes[$parent.$index].splice($index, 1)"
+                        dnd-draggable="item"
+                        dnd-dragend = 'previewChecker()'>
+                        <div class="title">{{item.title}}</div>
+                        <div class="blocks__content-wrp clearfix">
+                            <div class="logo">
+                                <img src="app/img/{{item.title}}.png">
+                            </div>
+                            <span class="text">{{item.text}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
