@@ -17,12 +17,14 @@
                 .state('/', {
                     url: "/",
                     templateUrl: "app/partials/dev.html",
-                    controller: 'dropController'
+                    controller: 'dropController',
+                    controllerAs: 'drop'
                 })
                 .state('/preview', {
                     url: "/preview",
                     templateUrl: "app/partials/preview.html",
-                    controller: 'previewController'
+                    controller: 'previewController',
+                    controllerAs: 'preview'
                 })
 
         });

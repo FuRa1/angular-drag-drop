@@ -6,16 +6,16 @@
         .controller('dropController', dropController)
         .controller('previewController', previewController);
 
-    dropController.$inject = ['$scope', 'storage'];
-    previewController.$inject = ['$scope', 'storage', '$state'];
+    dropController.$inject = ['storage'];
+    previewController.$inject = ['storage', '$state'];
 
-    function dropController($scope, storage) {
-
-        $scope.elements = [];
-        $scope.boxes = [];
-        $scope.readyToPreview = true; //true means ng-disabled: true
-        $scope.previewChecker = previewChecker;
-        $scope.saveItemsState = saveItemsState;
+    function dropController(storage) {
+        var vm = this;
+        vm.elements = [];
+        vm.boxes = [];
+        vm.readyToPreview = true; //true means ng-disabled: true
+        vm.previewChecker = previewChecker;
+        vm.saveItemsState = saveItemsState;
 
         var boxesAmount = 5;
 
@@ -29,17 +29,17 @@
 
             //save items in storage when preview button pressed.
 
-            storage.setPreviewedItems($scope.boxes);
-            storage.setItems($scope.elements);
+            storage.setPreviewedItems(vm.boxes);
+            storage.setItems(vm.elements);
         }
 
         function previewChecker() {
-            let filtered = $scope.boxes.filter(e=>{
+            let filtered = vm.boxes.filter(e=>{
                     return e.length === 0;
         });
             // check if al off boxes are filled
             // enable preview button if no empty boxes
-            return $scope.readyToPreview = filtered.length !== 0;
+            return vm.readyToPreview = filtered.length !== 0;
         }
 
         function setBoxes(count) {
@@ -48,7 +48,7 @@
             for (let i = 0; i < count; i++) {
                 tempArray[i] = [];
             }
-            $scope.boxes = tempArray;
+            vm.boxes = tempArray;
         }
 
         function getData() {
@@ -58,23 +58,24 @@
 
             if(items.length > 0 || boxes.length > 0){
                 //check if elements already exists, set them from storage
-                $scope.elements = items;
-                $scope.boxes = boxes;
+                vm.elements = items;
+                vm.boxes = boxes;
                 return;
             }
 
             //otherwise processed request from server
             storage.getArticles()
                 .then(data => {
-                return $scope.elements = data;
+                return vm.elements = data;
         });
         }
 
     }
 
 
-    function previewController($scope, storage, $state) {
-        $scope.boxes = [];
+    function previewController(storage, $state) {
+        var vm = this;
+        vm.boxes = [];
 
         setPreviewedBoxes();
 
@@ -83,8 +84,8 @@
             //check if boxes(previewed items) exists in storage
             //if 'yes' set them to scope
             //if no redirect to start state
-            boxes.length > 0 ? $scope.boxes = boxes : $state.go('/');
-            $scope.boxes = storage.getPreviewedItems();
+            boxes.length > 0 ? vm.boxes = boxes : $state.go('/');
+            vm.boxes = storage.getPreviewedItems();
         }
 
 
